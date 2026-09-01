@@ -1,3 +1,21 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+
+# --- Java / NetBeans ---
+
+# Saida de compilacao (gerada pelo build, nao deve ser versionada)
+build/
+dist/
+target/
+*.class
+
+# Configuracao local do NetBeans (caminhos da maquina de quem abriu o projeto)
+nbproject/private/
+
+# Dados gravados pelos programas em tempo de execucao
+alunos.txt
+pessoas.txt
+
+# Pacotes de entrega do trabalho
+*.zip
