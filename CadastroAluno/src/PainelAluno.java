@@ -1,3 +1,5 @@
+import javax.swing.table.DefaultTableModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -14,11 +16,52 @@ public class PainelAluno extends javax.swing.JFrame {
     /**
      * Creates new form PainelAluno
      */
-    private java.util.List<Aluno> listaAlunos = new java.util.ArrayList<>();
+    private java.util.ArrayList<Aluno> listaAlunos;
+    private Arquivo arquivo;
+
+    private javax.swing.JTable tbl_alunos;
+    private DefaultTableModel modeloTabela;
+
     public PainelAluno() {
         initComponents();
         btnGrpSexo.add(Masculino);
         btnGrpSexo.add(Feminino);
+
+        montarTabela();
+
+        arquivo = new Arquivo("alunos");
+        listaAlunos = arquivo.leArquivo();
+        carregarTabela();
+    }
+
+    // Crei a JTable por codigo dentro do jScrollPane1 que ja existe no
+    // formulario, no lugar do jTextArea1, Pra nao precisar baixar o netBeans no meu pc
+    private void montarTabela() {
+
+        modeloTabela = new DefaultTableModel(
+                new String[] { "Nome", "Data Nasc", "Sexo", "Matricula", "Curso", "CPF",
+                               "Rua", "Numero", "Bairro", "Cidade", "CEP", "Estado",
+                               "Telefone" }, 0) {
+            @Override
+            public boolean isCellEditable(int linha, int coluna) {
+                return false;
+            }
+        };
+
+        tbl_alunos = new javax.swing.JTable(modeloTabela);
+
+        tbl_alunos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+
+        jScrollPane1.setViewportView(tbl_alunos);
+    }
+
+    private void carregarTabela() {
+
+        modeloTabela.setRowCount(0);
+
+        for (Aluno a : listaAlunos) {
+            modeloTabela.addRow(a.obterDados());
+        }
     }
 
     /**
@@ -294,7 +337,19 @@ public class PainelAluno extends javax.swing.JFrame {
     String cep = txtCEP.getText();
     String telefone = txtTelefone.getText();
 
-    int matricula = Integer.parseInt(txtMatricula.getText());
+    int matricula;
+
+    try {
+        matricula = Integer.parseInt(txtMatricula.getText().trim());
+    } catch (NumberFormatException e) {
+        javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Matricula invalida: digite somente numeros, ate 10 digitos.",
+            "Erro",
+            javax.swing.JOptionPane.ERROR_MESSAGE
+        );
+        return;
+    }
 
     char sexo;
 
@@ -329,7 +384,10 @@ public class PainelAluno extends javax.swing.JFrame {
         telefone
     );
     listaAlunos.add(aluno);
-    jTextArea1.append(aluno.getDadosFormatados() + "\n");
+
+    // Grava a lista inteira no arquivo alunos.txt e redesenha a exibicao
+    arquivo.gravaArquivo();
+    carregarTabela();
 
     javax.swing.JOptionPane.showMessageDialog(
         this,
