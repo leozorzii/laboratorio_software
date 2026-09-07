@@ -48,7 +48,10 @@ public class Arquivo {
                 
                 String[] campos = linha.split(";");
                 
-                listaPessoas.add(new Pessoa(campos[0], campos[1].charAt(0), campos[2]));
+                listaPessoas.add(new Pessoa(
+                    campos[0],
+                     campos[1].charAt(0),
+                      campos[2]));
                 return listaPessoas;
             }
             
