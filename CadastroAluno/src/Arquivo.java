@@ -16,6 +16,9 @@ public class Arquivo {
     private FileReader arqR;
     private BufferedReader leitor;
 
+    private FileWriter arqW;
+    private BufferedWriter escritor;
+
     private ArrayList<Aluno> listaAlunos;
 
     public String nomeArquivo;
@@ -34,11 +37,9 @@ public class Arquivo {
             leitor = new BufferedReader(arqR);
 
             String linha;
-
             while ((linha = leitor.readLine()) != null) {
 
                 String[] campos = linha.split(";");
-
                 if (campos.length < 13) {
                     continue;
                 }
@@ -59,7 +60,6 @@ public class Arquivo {
                         campos[12]                          // telefone
                 ));
             }
-
             leitor.close();
             arqR.close();
         }

@@ -27,6 +27,9 @@ public class PainelAluno extends javax.swing.JFrame {
 
     public PainelAluno() {
         initComponents();
+        //renomear os buttons
+        btnCadastrar1.setText("Salvar");
+        btnExcluir.setText("Excluir");
         btnGrpSexo.add(rdo_masculino);
         btnGrpSexo.add(rdo_feminino);
 
@@ -168,14 +171,14 @@ public class PainelAluno extends javax.swing.JFrame {
 
         rdo_feminino.setText("Feminino");
 
-        btnExcluir.setText("Deletar");
+        btnExcluir.setText("Excluir");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
             }
         });
 
-        btnCadastrar1.setText("Confirmar Cadastro");
+        btnCadastrar1.setText("Salvar");
         btnCadastrar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrar1ActionPerformed(evt);
@@ -353,89 +356,111 @@ public class PainelAluno extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rdo_masculinoActionPerformed
 
+    private void BtnSalvarActionPerformed(java.awt.event.ActionEvent evt){
+        if(rdo_masculino.isSelected()){
+            sexo = 'M';
+        }else if(rdo_feminino.isSelected()){
+            sexo = 'F';
+        }
+        else{
+            // CORRECAO 3: o return aqui e obrigatorio. Sem ele o metodo mostrava o erro
+            // e salvava assim mesmo. Como 'sexo' e campo da classe (e nao variavel local),
+            // o aluno era gravado com o sexo do cadastro anterior -- ou com o caractere
+            // nulo '0000' na primeira vez, sujando o arquivo.
+            JOptionPane.showMessageDialog(null, "Por Favor Selecione um Sexo!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // CORRECAO: antes o catch so imprimia no console e o metodo seguia em frente,
+        // salvando o aluno com matricula 0 sem ninguem perceber. Agora avisa na tela e
+        // aborta. O parseInt estoura com campo vazio, com espaco, com ponto e acima de
+        // 10 digitos (limite do int) -- por isso tambem o trim().
+        int matricula;
+
+        try {
+            matricula = Integer.parseInt(txtMatricula.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Matricula invalida: digite somente numeros, ate 10 digitos.",
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    
+        String estado = cmb_estado.getSelectedItem()+"";
+        Aluno a = new Aluno(
+            txtNome.getText(),
+            txtData.getText(),
+             sexo,
+             matricula,
+             txtCurso.getText(),
+             txtCPF.getText(),
+             txtRua.getText(),
+             txtNumeroRua.getText(),
+             txtBairro.getText(),
+             txtCidade.getText(),
+             txtCEP.getText(),
+             estado,
+             txtTelefone.getText()
+        );
+        if(linhaEdicao == -1){
+            listaAlunos.add(a);
+        }else{
+            listaAlunos.set(linhaEdicao, a);
+            linhaEdicao = -1;
+        }
+            arquivo.gravaArquivo();
+            carregarTabela();
+            JOptionPane.showMessageDialog(null, "Dados Salvos com Sucesso");
+            System.out.println("Pessoa Add");
+            for (Aluno aluno : listaAlunos) {
+                System.out.println(aluno);
+            }
+
+            txtNome.setText("");
+            txtData.setText("");
+            txtMatricula.setText("");
+            txtCurso.setText("");
+            txtCPF.setText("");
+            txtRua.setText("");
+            txtNumeroRua.setText("");
+            txtBairro.setText("");
+            txtCidade.setText("");
+            txtCEP.setText("");
+            txtTelefone.setText("");
+            btnGrpSexo.clearSelection();
+            cmb_estado.setSelectedIndex(0);
+
+
+    }
+
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-    String nome = txtNome.getText();
-    String dataNascimento = txtData.getText();
-    String curso = txtCurso.getText();
-    String cpf = txtCPF.getText();
-    String rua = txtRua.getText();
-    String numero = txtNumeroRua.getText();
-    String bairro = txtBairro.getText();
-    String cidade = txtCidade.getText();
-    String cep = txtCEP.getText();
-    String telefone = txtTelefone.getText();
-    
-
-    int matricula;
-
-    try {
-        matricula = Integer.parseInt(txtMatricula.getText().trim());
-    } catch (NumberFormatException e) {
-        javax.swing.JOptionPane.showMessageDialog(
-            this,
-            "Matricula invalida: digite somente numeros, ate 10 digitos.",
-            "Erro",
-            javax.swing.JOptionPane.ERROR_MESSAGE
+     int linha = tbl_alunos.getSelectedRow();
+        
+        if(linha == -1){
+            JOptionPane.showMessageDialog(
+            null, "Selecione uma pessoa na tabela.",
+                    "Atenção",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+        int res = JOptionPane.showConfirmDialog(
+        null, "Deseja realmente excluir esta pessoa",
+        "Confirmação",
+        JOptionPane.YES_NO_OPTION
         );
-        return;
-    }
+        if(res == JOptionPane.YES_OPTION){
+            listaAlunos.remove(linha);
+            
+            arquivo.gravaArquivo();
+            
+            
+            carregarTabela();
 
-    char sexo;
+            linhaEdicao = -1;
 
-    if (rdo_masculino.isSelected()) {
-        sexo = 'M';
-    } else if (rdo_feminino.isSelected()) {
-        sexo = 'F';
-    } else {
-        javax.swing.JOptionPane.showMessageDialog(
-            this,
-            "Selecione o sexo.",
-            "Erro",
-            javax.swing.JOptionPane.ERROR_MESSAGE
-        );
-        return;
-    }
-    String estado = cmb_estado.getSelectedItem().toString();
-
-    Aluno aluno = new Aluno(
-        nome,
-        dataNascimento,
-        sexo,
-        matricula,
-        curso,
-        cpf,
-        rua,
-        numero,
-        bairro,
-        cidade,
-        cep,
-        estado,
-        telefone
-    );
-    listaAlunos.add(aluno);
-    
-    arquivo.gravaArquivo();
-    carregarTabela();
-
-    javax.swing.JOptionPane.showMessageDialog(
-        this,
-        "Aluno cadastrado com sucesso!"
-    );
-
-    // Limpa os campos
-    txtNome.setText("");
-    txtData.setText("");
-    txtMatricula.setText("");
-    txtCurso.setText("");
-    txtCPF.setText("");
-    txtRua.setText("");
-    txtNumeroRua.setText("");
-    txtBairro.setText("");
-    txtCidade.setText("");
-    txtCEP.setText("");
-    txtTelefone.setText("");
-
-    btnGrpSexo.clearSelection();
+            System.out.println("Pessoa Excluida");
+            
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
@@ -447,7 +472,7 @@ public class PainelAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRuaActionPerformed
 
     private void btnCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar1ActionPerformed
-        // TODO add your handling code here:
+        BtnSalvarActionPerformed(evt);
     }//GEN-LAST:event_btnCadastrar1ActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -465,6 +490,10 @@ public class PainelAluno extends javax.swing.JFrame {
        txtNome.setText(a.nome);
        txtData.setText(a.dataNascimento);
        txtMatricula.setText(String.valueOf(a.matricula));
+       // CORRECAO 2: este setText do curso estava faltando. Todos os outros campos eram
+       // repreenchidos, menos o curso -- entao editar qualquer aluno e salvar gravava o
+       // curso em branco por cima do que estava certo.
+       txtCurso.setText(a.curso);
        txtCPF.setText(a.cpf);
        txtRua.setText(a.rua);
        txtNumeroRua.setText(a.numero);
