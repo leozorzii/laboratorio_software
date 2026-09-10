@@ -1,0 +1,2 @@
+Sirc;15/09/2026;UFN;Palestra;Presencial;Agendado
+CUBAS;29/09/2026;Torres RS;Cancelado;Presencial;Workshop
