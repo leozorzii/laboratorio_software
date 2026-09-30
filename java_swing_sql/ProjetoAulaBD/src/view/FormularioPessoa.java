@@ -4,6 +4,10 @@
  */
 package view;
 
+import Beans.Pessoa;
+import DAO.PessoaDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author laboratorio
@@ -18,6 +22,12 @@ public class FormularioPessoa extends javax.swing.JFrame {
     public FormularioPessoa() {
         initComponents();
     }
+    public void limparFormulario(){
+        txt_id2.setText("");
+        txt_nome.setText("");
+        txt_sexo.setText("");
+        txt_idioma.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,21 +38,193 @@ public class FormularioPessoa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btn_grp_sexo = new javax.swing.ButtonGroup();
+        lbl_nome = new javax.swing.JLabel();
+        lbl_sexo = new javax.swing.JLabel();
+        lbl_idioma = new javax.swing.JLabel();
+        txt_nome = new javax.swing.JTextField();
+        txt_sexo = new javax.swing.JTextField();
+        txt_idioma = new javax.swing.JTextField();
+        lbl_id = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
+        lbl_id2 = new javax.swing.JLabel();
+        txt_id2 = new javax.swing.JTextField();
+        btn_consultar = new javax.swing.JButton();
+        bnt_atualizar = new javax.swing.JButton();
+        btn_excluir = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lbl_nome.setText("nome");
+
+        lbl_sexo.setText("sexo");
+
+        lbl_idioma.setText("idioma");
+
+        lbl_id.setText("ID");
+
+        txt_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_idActionPerformed(evt);
+            }
+        });
+
+        lbl_id2.setText("ID");
+
+        txt_id2.setEnabled(false);
+        txt_id2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_id2ActionPerformed(evt);
+            }
+        });
+
+        btn_consultar.setText("Consultar");
+        btn_consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_consultarActionPerformed(evt);
+            }
+        });
+
+        bnt_atualizar.setText("Atualizar");
+        bnt_atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bnt_atualizarActionPerformed(evt);
+            }
+        });
+
+        btn_excluir.setText("Excluir");
+        btn_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lbl_sexo)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txt_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lbl_nome)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbl_idioma)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_idioma, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(243, 243, 243))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbl_id2)
+                            .addComponent(lbl_id))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_id, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                            .addComponent(txt_id2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_consultar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(112, 112, 112)
+                .addComponent(bnt_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(btn_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_consultar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_id)
+                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_id2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_id2))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_nome)
+                    .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_sexo)
+                    .addComponent(txt_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_idioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_idioma))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_excluir, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                    .addComponent(bnt_atualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txt_id2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_id2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_id2ActionPerformed
+
+    private void btn_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultarActionPerformed
+        int idPessoa = Integer.parseInt(txt_id.getText());
+        PessoaDAO pDAO = new PessoaDAO();
+        
+        Pessoa p = pDAO.getPessoa(idPessoa);
+        if(p == null){
+            txt_nome.setText("");
+            txt_sexo.setText("");
+            txt_idioma.setText("");
+            JOptionPane.showMessageDialog(this, "Pessoa nao encontrada");
+        }
+        else{
+            txt_id2.setText(p.getId()+"");
+            txt_nome.setText(p.getNome());
+            txt_sexo.setText(p.getSexo());
+            txt_idioma.setText(p.getIdioma());
+        }
+    }//GEN-LAST:event_btn_consultarActionPerformed
+
+    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_idActionPerformed
+
+    private void bnt_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_atualizarActionPerformed
+        Pessoa p = new Pessoa();
+        p.setId(Integer.parseInt(txt_id2.getText()));
+        p.setNome(txt_nome.getText());
+        p.setSexo(txt_sexo.getText());
+        p.setIdioma(txt_idioma.getText());
+        
+        PessoaDAO pDAO = new PessoaDAO();
+        pDAO.editar(p);
+        limparFormulario();
+    }//GEN-LAST:event_bnt_atualizarActionPerformed
+
+    private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja Realmente excluir esse registro?", "Excluão", JOptionPane.YES_NO_OPTION);
+        if(resposta == JOptionPane.YES_OPTION){
+            PessoaDAO pDAO = new PessoaDAO();
+            pDAO.excluir(Integer.parseInt(txt_id2.getText()));
+            limparFormulario();
+        }
+    }//GEN-LAST:event_btn_excluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +252,19 @@ public class FormularioPessoa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bnt_atualizar;
+    private javax.swing.JButton btn_consultar;
+    private javax.swing.JButton btn_excluir;
+    private javax.swing.ButtonGroup btn_grp_sexo;
+    private javax.swing.JLabel lbl_id;
+    private javax.swing.JLabel lbl_id2;
+    private javax.swing.JLabel lbl_idioma;
+    private javax.swing.JLabel lbl_nome;
+    private javax.swing.JLabel lbl_sexo;
+    private javax.swing.JTextField txt_id;
+    private javax.swing.JTextField txt_id2;
+    private javax.swing.JTextField txt_idioma;
+    private javax.swing.JTextField txt_nome;
+    private javax.swing.JTextField txt_sexo;
     // End of variables declaration//GEN-END:variables
 }
