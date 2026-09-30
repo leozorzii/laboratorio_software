@@ -20,7 +20,7 @@ public class AlunoDAO {
         this.conn = conexao.getConexao();
     }
     public void inserir(Aluno aluno){
-        String sql = "INSERT INTO pessoa(nome,idade,curso) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO aluno(nome,idade,curso) VALUES (?, ?, ?)";
         try{
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setString(1, aluno.getNome());
