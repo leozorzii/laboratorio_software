@@ -19,3 +19,4 @@ pessoas.txt
 
 # Pacotes de entrega do trabalho
 *.zip
+/java_swing_sql/ProjetoBDescola/nbproject/private/

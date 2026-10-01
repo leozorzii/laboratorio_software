@@ -24,9 +24,10 @@ public class FormularioPessoa extends javax.swing.JFrame {
     }
     public void limparFormulario(){
         txt_id2.setText("");
+        txt_id.setText("");
         txt_nome.setText("");
-        txt_sexo.setText("");
-        txt_idioma.setText("");
+        btn_grp_sexo.clearSelection();
+        cmb_idioma.setSelectedIndex(0);
     }
 
     /**
@@ -43,8 +44,6 @@ public class FormularioPessoa extends javax.swing.JFrame {
         lbl_sexo = new javax.swing.JLabel();
         lbl_idioma = new javax.swing.JLabel();
         txt_nome = new javax.swing.JTextField();
-        txt_sexo = new javax.swing.JTextField();
-        txt_idioma = new javax.swing.JTextField();
         lbl_id = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
         lbl_id2 = new javax.swing.JLabel();
@@ -52,6 +51,9 @@ public class FormularioPessoa extends javax.swing.JFrame {
         btn_consultar = new javax.swing.JButton();
         bnt_atualizar = new javax.swing.JButton();
         btn_excluir = new javax.swing.JButton();
+        rdo_masculino = new javax.swing.JRadioButton();
+        rdo_feminino = new javax.swing.JRadioButton();
+        cmb_idioma = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,45 +101,54 @@ public class FormularioPessoa extends javax.swing.JFrame {
             }
         });
 
+        rdo_masculino.setText("Masculino");
+
+        rdo_feminino.setText("Feminino");
+
+        cmb_idioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Português", "Inglês", "Alemão", "Francês", "Turco" }));
+        cmb_idioma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_idiomaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addComponent(lbl_sexo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rdo_masculino)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rdo_feminino)
+                .addGap(186, 186, 186))
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lbl_sexo)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txt_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lbl_nome)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_idioma)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_idioma, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(243, 243, 243))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbl_id2)
-                            .addComponent(lbl_id))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(14, 14, 14)
+                        .addComponent(lbl_idioma)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmb_idioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(bnt_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(btn_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lbl_id2)
+                                .addComponent(lbl_id))
+                            .addComponent(lbl_nome))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_id, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                            .addComponent(txt_nome, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                            .addComponent(txt_id)
                             .addComponent(txt_id2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_consultar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(bnt_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btn_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(btn_consultar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -160,19 +171,20 @@ public class FormularioPessoa extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_nome)
                     .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_sexo)
-                    .addComponent(txt_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_idioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_idioma))
+                    .addComponent(rdo_masculino)
+                    .addComponent(rdo_feminino))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_excluir, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                    .addComponent(bnt_atualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_idioma)
+                    .addComponent(cmb_idioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bnt_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -188,16 +200,18 @@ public class FormularioPessoa extends javax.swing.JFrame {
         
         Pessoa p = pDAO.getPessoa(idPessoa);
         if(p == null){
-            txt_nome.setText("");
-            txt_sexo.setText("");
-            txt_idioma.setText("");
+            limparFormulario();
             JOptionPane.showMessageDialog(this, "Pessoa nao encontrada");
         }
         else{
             txt_id2.setText(p.getId()+"");
             txt_nome.setText(p.getNome());
-            txt_sexo.setText(p.getSexo());
-            txt_idioma.setText(p.getIdioma());
+            if(p.getSexo().equals("M")){
+            rdo_masculino.setSelected(true);
+            }else{
+                rdo_feminino.setSelected(true);
+            }
+            cmb_idioma.setSelectedItem(p.getIdioma());
         }
     }//GEN-LAST:event_btn_consultarActionPerformed
 
@@ -206,11 +220,18 @@ public class FormularioPessoa extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_idActionPerformed
 
     private void bnt_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_atualizarActionPerformed
+        String sexo = null;
+        if(rdo_masculino.isSelected()){
+        sexo = "M";
+        }else if(rdo_feminino.isSelected()){
+            sexo = "F";
+        }
+        
         Pessoa p = new Pessoa();
         p.setId(Integer.parseInt(txt_id2.getText()));
         p.setNome(txt_nome.getText());
-        p.setSexo(txt_sexo.getText());
-        p.setIdioma(txt_idioma.getText());
+        p.setSexo(sexo);
+        p.setIdioma(cmb_idioma.getSelectedItem().toString());
         
         PessoaDAO pDAO = new PessoaDAO();
         pDAO.editar(p);
@@ -225,6 +246,10 @@ public class FormularioPessoa extends javax.swing.JFrame {
             limparFormulario();
         }
     }//GEN-LAST:event_btn_excluirActionPerformed
+
+    private void cmb_idiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_idiomaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmb_idiomaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,15 +281,16 @@ public class FormularioPessoa extends javax.swing.JFrame {
     private javax.swing.JButton btn_consultar;
     private javax.swing.JButton btn_excluir;
     private javax.swing.ButtonGroup btn_grp_sexo;
+    private javax.swing.JComboBox<String> cmb_idioma;
     private javax.swing.JLabel lbl_id;
     private javax.swing.JLabel lbl_id2;
     private javax.swing.JLabel lbl_idioma;
     private javax.swing.JLabel lbl_nome;
     private javax.swing.JLabel lbl_sexo;
+    private javax.swing.JRadioButton rdo_feminino;
+    private javax.swing.JRadioButton rdo_masculino;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_id2;
-    private javax.swing.JTextField txt_idioma;
     private javax.swing.JTextField txt_nome;
-    private javax.swing.JTextField txt_sexo;
     // End of variables declaration//GEN-END:variables
 }
