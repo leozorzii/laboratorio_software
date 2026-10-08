@@ -1,0 +1,2 @@
+corta vento;Vestuário;120.0;2;S
+tome tome;Alimento;5.99;5;N
