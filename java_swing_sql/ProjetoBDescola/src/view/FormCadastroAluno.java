@@ -4,6 +4,10 @@
  */
 package view;
 
+import Beans.Aluno;
+import DAO.AlunoDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author leo zorzi
@@ -39,7 +43,7 @@ public class FormCadastroAluno extends javax.swing.JFrame {
         btn_cadastrar = new javax.swing.JButton();
         lbl_titulo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lbl_nome.setText("Nome");
 
@@ -47,7 +51,7 @@ public class FormCadastroAluno extends javax.swing.JFrame {
 
         lbl_curso.setText("Curso");
 
-        cmb_curso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sistemas De Informação", "Ciência da Computação", " ", " " }));
+        cmb_curso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sistemas de Informação", "Ciência da Computação" }));
 
         txt_nome.addActionListener(this::txt_nomeActionPerformed);
 
@@ -70,6 +74,7 @@ public class FormCadastroAluno extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbl_alunos);
 
         btn_cadastrar.setText("Cadastrar");
+        btn_cadastrar.addActionListener(this::btn_cadastrarActionPerformed);
 
         lbl_titulo.setForeground(new java.awt.Color(153, 102, 255));
         lbl_titulo.setText("Formulario de Alunos");
@@ -142,6 +147,17 @@ public class FormCadastroAluno extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nomeActionPerformed
 
+    private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
+        Aluno a = new Aluno();
+        a.setNome(txt_nome.getText());
+        a.setIdade(Integer.parseInt(txt_idade.getText()));
+        a.setCurso(cmb_curso.getSelectedItem()+"");
+        AlunoDAO adao = new AlunoDAO();
+        adao.inserir(a);
+        JOptionPane.showMessageDialog(null, "Salvamento efetuado com sucesso", "Mensagem", JOptionPane.OK_OPTION);
+        limparFormulario();
+    }//GEN-LAST:event_btn_cadastrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -179,4 +195,9 @@ public class FormCadastroAluno extends javax.swing.JFrame {
     private javax.swing.JTextField txt_idade;
     private javax.swing.JTextField txt_nome;
     // End of variables declaration//GEN-END:variables
+    private void limparFormulario() {
+        txt_nome.setText("");
+        txt_idade.setText("");
+        cmb_curso.setSelectedIndex(0);
+    }
 }

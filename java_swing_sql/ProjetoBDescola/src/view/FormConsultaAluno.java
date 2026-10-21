@@ -52,7 +52,7 @@ public class FormConsultaAluno extends javax.swing.JFrame {
         lbl_idade = new javax.swing.JLabel();
         txt_idade = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         bnt_atualizar.setText("Atualizar");
         bnt_atualizar.addActionListener(this::bnt_atualizarActionPerformed);

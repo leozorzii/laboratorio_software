@@ -53,11 +53,11 @@ public class FormConsultaProfessor extends javax.swing.JFrame {
         btn_consultar = new javax.swing.JButton();
         lbl_idade = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lbl_disciplina.setText("Disciplina");
 
-        cmb_disciplinas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Banco de Dados", "Engenharia de Software", "Programação Orientada a Objetos", "Sistemas Operacionais", "Redes de Computadores", " " }));
+        cmb_disciplinas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Banco de Dados", "Engenharia de Software", "Programação Orientada a Objetos", "Sistemas Operacionais", "Redes de Computadores" }));
         cmb_disciplinas.addActionListener(this::cmb_disciplinasActionPerformed);
 
         lbl_id.setText("ID");

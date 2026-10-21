@@ -52,11 +52,13 @@ public class AlunoDAO {
             return null;
         }
     }
-    public List<Aluno> getAlunos(){
-        String sql = "SELECT * FROM aluno";
+    public List<Aluno> getAlunos(String nome, String curso){
+        String sql = "SELECT * FROM aluno WHERE nome LIKE ? and curso LIKE ?";
         List<Aluno> lista = new ArrayList<>();
         try{
             PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, "%" + nome + "%");
+            stmt.setString(2, "%" + curso + "%");
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 Aluno a = new Aluno();
@@ -71,6 +73,7 @@ public class AlunoDAO {
         }
         return lista;
     }
+    
     public void editar(Aluno aluno){
         try{
             String sql = "UPDATE aluno set nome=?, idade=?, curso=? WHERE id=?";

@@ -4,6 +4,10 @@
  */
 package view;
 
+import Beans.Professor;
+import DAO.ProfessorDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author leo zorzi
@@ -39,7 +43,7 @@ public class FormCadastroProfessor extends javax.swing.JFrame {
         txt_idade = new javax.swing.JTextField();
         lbl_titulo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tbl_professores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -68,7 +72,7 @@ public class FormCadastroProfessor extends javax.swing.JFrame {
 
         lbl_disciplina.setText("Disciplina");
 
-        cmb_disciplina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Redes de Computadores", "Estrutura de Dados", "Algoritmos B", "Métodos de Pesquisa e Ordenação", " " }));
+        cmb_disciplina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Banco de Dados", "Engenharia de Software", "Programação Orientada a Objetos", "Sistemas Operacionais", "Redes de Computadores" }));
 
         txt_nome.addActionListener(this::txt_nomeActionPerformed);
 
@@ -144,7 +148,14 @@ public class FormCadastroProfessor extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_nomeActionPerformed
 
     private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
-        // TODO add your handling code here:
+        Professor p = new Professor();
+        p.setNome(txt_nome.getText());
+        p.setIdade(Integer.parseInt(txt_idade.getText()));
+        p.setDisciplina(cmb_disciplina.getSelectedItem()+"");
+        ProfessorDAO pdao = new ProfessorDAO();
+        pdao.inserir(p);
+        JOptionPane.showMessageDialog(null, "Salvamento efetuado com sucesso", "Mensagem", JOptionPane.OK_OPTION);
+        limparFormulario();
     }//GEN-LAST:event_btn_cadastrarActionPerformed
 
     /**
@@ -184,4 +195,9 @@ public class FormCadastroProfessor extends javax.swing.JFrame {
     private javax.swing.JTextField txt_idade;
     private javax.swing.JTextField txt_nome;
     // End of variables declaration//GEN-END:variables
+    private void limparFormulario() {
+        txt_nome.setText("");
+        txt_idade.setText("");
+        cmb_disciplina.setSelectedIndex(0);
+    }
 }
