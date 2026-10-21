@@ -6,6 +6,8 @@ package DAO;
 import Beans.Professor;
 import conexao.Conexao;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -49,6 +51,25 @@ public class ProfessorDAO {
             System.out.println("Erro ao consultar professor: " + ex.getMessage());
             return null;
         }
+    }
+    public List<Professor> getProfessores(){
+        String sql = "SELECT * FROM professor";
+        List<Professor> lista = new ArrayList<>();
+        try{
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                Professor prof = new Professor();
+                prof.setId(rs.getInt("id"));
+                prof.setNome(rs.getString("nome"));
+                prof.setIdade(rs.getInt("idade"));
+                prof.setDisciplina(rs.getString("disciplina"));
+                lista.add(prof);
+            }
+        }catch(SQLException ex){
+            System.out.println("Erro ao listar professores: " + ex.getMessage());
+        }
+        return lista;
     }
     public void editar(Professor prof){
         try{

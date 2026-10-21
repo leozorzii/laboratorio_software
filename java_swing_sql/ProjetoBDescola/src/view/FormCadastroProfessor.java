@@ -60,6 +60,7 @@ public class FormCadastroProfessor extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbl_professores);
 
         btn_cadastrar.setText("Cadastrar");
+        btn_cadastrar.addActionListener(this::btn_cadastrarActionPerformed);
 
         lbl_nome.setText("Nome");
 
@@ -141,6 +142,10 @@ public class FormCadastroProfessor extends javax.swing.JFrame {
     private void txt_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nomeActionPerformed
+
+    private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_cadastrarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -6,6 +6,8 @@ package DAO;
 import Beans.Aluno;
 import conexao.Conexao;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -49,6 +51,25 @@ public class AlunoDAO {
             System.out.println("Erro ao consultar aluno: " + ex.getMessage());
             return null;
         }
+    }
+    public List<Aluno> getAlunos(){
+        String sql = "SELECT * FROM aluno";
+        List<Aluno> lista = new ArrayList<>();
+        try{
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                Aluno a = new Aluno();
+                a.setId(rs.getInt("id"));
+                a.setNome(rs.getString("nome"));
+                a.setIdade(rs.getInt("idade"));
+                a.setCurso(rs.getString("curso"));
+                lista.add(a);
+            }
+        }catch(SQLException ex){
+            System.out.println("Erro ao listar alunos: " + ex.getMessage());
+        }
+        return lista;
     }
     public void editar(Aluno aluno){
         try{
