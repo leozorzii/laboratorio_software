@@ -4,6 +4,8 @@
  */
 package Beans;
 
+import java.util.Objects;
+
 /**
  *
  * @author laboratorio
@@ -45,9 +47,20 @@ private String idioma;
     public void setIdioma(String idioma) {
         this.idioma = idioma;
     }
+    public String toString() {
+        return this.id+" - "+this.nome;
+    }
 
-   
 
-
-
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() !=obj.getClass()) {
+            return false;
+        }
+        Pessoa pessoa = (Pessoa) obj;
+        return id == pessoa.id;
+    }
 }

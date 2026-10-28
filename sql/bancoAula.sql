@@ -22,6 +22,15 @@ VALUES
 
 SELECT *
 FROM PESSOA;
+-- adiciona tabela veiculo
+CREATE TABLE veiculo(
+id INT AUTO_INCREMENT PRIMARY KEY,
+modelo VARCHAR(30),
+placa VARCHAR(7),
+id_pessoa INT NOT NULL,
+foreign key(id_pessoa) REFERENCES pessoa(id)
+);
+
 
 
 
