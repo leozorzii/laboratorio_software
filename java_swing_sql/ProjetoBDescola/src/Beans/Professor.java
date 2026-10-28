@@ -45,7 +45,29 @@ public class Professor {
     public void setDisciplina(String disciplina) {
         this.disciplina = disciplina;
     }
-    
+
+    @Override
+    public String toString() {
+        return this.id+" - "+this.nome;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final Professor other = (Professor) obj;
+        return this.id == other.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(this.id);
+    }
+
     
     
     

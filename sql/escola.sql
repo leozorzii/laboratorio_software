@@ -48,4 +48,13 @@ VALUES
 (5 ,2 , '2025-04-20'),
 (1 ,4 , '2026-06-25');
 
-SELECT * FROM matricula 
+SELECT * FROM matricula ;
+
+-- adiciona tabela disciplina
+CREATE TABLE disciplina(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(50) NOT NULL,
+carga_horaria INT NOT NULL,
+id_professor INT NOT NULL,
+FOREIGN KEY (id_professor) REFERENCES professor(id)
+);

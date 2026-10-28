@@ -36,6 +36,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menu_CadProfessores = new javax.swing.JMenuItem();
         menu_ConsulltaAlunos = new javax.swing.JMenuItem();
         menu_ConsultaProfessores = new javax.swing.JMenuItem();
+        menu_CadDisciplinas = new javax.swing.JMenuItem();
+        menu_ConsultaDisciplinas = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         menu_relatorio_filtro_alunos = new javax.swing.JMenuItem();
         menu_relatorioAlunos = new javax.swing.JMenuItem();
@@ -70,6 +72,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menu_ConsultaProfessores.setText("Consulta Professores");
         menu_ConsultaProfessores.addActionListener(this::menu_ConsultaProfessoresActionPerformed);
         menu_cadAlunos.add(menu_ConsultaProfessores);
+
+        menu_CadDisciplinas.setText("Cadastro de Disciplinas");
+        menu_CadDisciplinas.addActionListener(this::menu_CadDisciplinasActionPerformed);
+        menu_cadAlunos.add(menu_CadDisciplinas);
+
+        menu_ConsultaDisciplinas.setText("Consulta Disciplinas");
+        menu_ConsultaDisciplinas.addActionListener(this::menu_ConsultaDisciplinasActionPerformed);
+        menu_cadAlunos.add(menu_ConsultaDisciplinas);
 
         jMenuBar1.add(menu_cadAlunos);
 
@@ -135,6 +145,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         conProfessor.setVisible(true);
     }//GEN-LAST:event_menu_ConsultaProfessoresActionPerformed
 
+    private void menu_CadDisciplinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_CadDisciplinasActionPerformed
+        FormCadastroDisciplina cadDisciplina = new FormCadastroDisciplina();
+        cadDisciplina.setVisible(true);
+    }//GEN-LAST:event_menu_CadDisciplinasActionPerformed
+
+    private void menu_ConsultaDisciplinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_ConsultaDisciplinasActionPerformed
+        FormConsultaDisciplina conDisciplina = new FormConsultaDisciplina();
+        conDisciplina.setVisible(true);
+    }//GEN-LAST:event_menu_ConsultaDisciplinasActionPerformed
+
     private void menu_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_sairActionPerformed
         System.exit(0);
     }//GEN-LAST:event_menu_sairActionPerformed
@@ -189,8 +209,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem menu_CadDisciplinas;
     private javax.swing.JMenuItem menu_CadProfessores;
     private javax.swing.JMenuItem menu_ConsulltaAlunos;
+    private javax.swing.JMenuItem menu_ConsultaDisciplinas;
     private javax.swing.JMenuItem menu_ConsultaProfessores;
     private javax.swing.JMenu menu_cadAlunos;
     private javax.swing.JMenuItem menu_relatorioAlunos;
