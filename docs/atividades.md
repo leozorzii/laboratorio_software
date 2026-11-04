@@ -47,6 +47,21 @@ Caminhos relativos à raiz do repositório.
 | **Atividade 2:** cadastro de disciplina buscando professores | `Escola`: `Beans/Disciplina.java`, `DAO/DisciplinaDAO.java`, `view/FormCadastroDisciplina` |
 | **Atividade 2:** tela de edição que troca o professor | `Escola`: `view/FormConsultaDisciplina` (menu: Cadastros → Consulta Disciplinas) |
 
+## Exercício extra — Categorias e Produtos (1:N)
+
+Projeto `java_swing_sql/Produtos` (banco `loja`, script [`sql/produtos.sql`](../sql/produtos.sql)).
+
+| Requisito | Onde |
+|---|---|
+| Tabelas `categorias` e `produtos` (FK `categoria_id`) | `sql/produtos.sql` |
+| Cadastro de produto com combo de categorias | `view/FormCadastroProduto` |
+| CRUD de produto, trocando a categoria na edição | `view/FormConsultaProduto`, `DAO/ProdutoDAO.java` |
+| Tela que lista produtos (nome, preço, qtd, categoria) + busca por nome ou categoria | `view/RelatorioProdutos`, `ProdutoDAO.getProdutos(nome, categoria)` |
+| Tela separada para cadastrar, editar e listar categorias | `view/FormCategorias`, `DAO/CategoriaDAO.java` |
+| Menu | `view/MenuPrincipal` (classe principal) |
+
+Como replicar em outro tema: [`guia-replicacao-prova.md`](guia-replicacao-prova.md).
+
 ## Pendências conhecidas
 
 - As telas de veículo do `AulaBD` ainda não estão no `view/Menu` e usam `EXIT_ON_CLOSE` (fecham o programa todo).

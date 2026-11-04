@@ -22,10 +22,12 @@ laboratorio_software/
 │   └── GerenciamentoEventos/
 ├── java_swing_sql/               # Parte 2: Swing + MySQL (JDBC)
 │   ├── ProjetoAulaBD/                 # projeto das aulas: pessoa e veiculo (banco aula01)
-│   └── ProjetoBDescola/               # atividades: aluno, professor, disciplina (banco escola)
+│   ├── ProjetoBDescola/               # atividades: aluno, professor, disciplina (banco escola)
+│   └── Produtos/                      # exercicio: categorias + produtos (banco loja)
 ├── sql/                          # scripts dos bancos
 │   ├── bancoAula.sql                  # banco aula01: pessoa, veiculo
-│   └── escola.sql                     # banco escola: aluno, professor, matricula, disciplina
+│   ├── escola.sql                     # banco escola: aluno, professor, matricula, disciplina
+│   └── produtos.sql                   # banco loja: categorias, produtos (FK categoria_id)
 └── libs/
     └── mysql-connector-j-8.1.0.jar    # driver JDBC (copiar para drivers/ de um projeto novo)
 ```
@@ -61,6 +63,7 @@ Mapa completo arquivo a arquivo: [`docs/atividades.md`](docs/atividades.md).
 1. **Banco:** no MySQL Command Line Client (usuario `root`, senha do lab `laboratorio`), rodar o script do projeto:
    - `ProjetoAulaBD` → [`sql/bancoAula.sql`](sql/bancoAula.sql) (cria `aula01`)
    - `ProjetoBDescola` → [`sql/escola.sql`](sql/escola.sql) (cria `escola`)
+   - `Produtos` → [`sql/produtos.sql`](sql/produtos.sql) (cria `loja`; recria tudo se rodar de novo)
 2. **NetBeans:** File → Open Project → `java_swing_sql/<projeto>`. O driver ja esta em `drivers/` e nas Libraries.
 3. Conferir usuario/senha em `src/conexao/Conexao.java` e rodar (F6). A classe principal e o menu (`view.Menu` / `view.MenuPrincipal`).
 

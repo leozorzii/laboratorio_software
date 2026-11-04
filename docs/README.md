@@ -4,6 +4,7 @@
 |---|---|
 | [`prova-java-banco-de-dados.md`](prova-java-banco-de-dados.md) | **Guia de prova** de Java Swing + MySQL (JDBC, Bean, DAO, telas, FK, erros comuns, checklist) |
 | [`prova-swing-crud.md`](prova-swing-crud.md) | Guia de prova da parte anterior: Swing + CRUD com arquivo `.txt` |
+| [`guia-replicacao-prova.md`](guia-replicacao-prova.md) | **Cola de replicação**: modelo com Pai/Filho, tabela de substituição, variações de prova, Workbench, erros |
 | [`atividades.md`](atividades.md) | Cada atividade das aulas 07–10 → arquivo onde está resolvida |
 | [`aulas/`](aulas/) | Slides originais das aulas 07 a 10 (PDF) |
 
