@@ -23,7 +23,7 @@ public class Conexao {
             System.out.println("Conexao realizada com sucesso!");
             return conn;
         }catch(Exception e){
-            System.out.println("Errp ao conectar no DB"+e.getMessage());
+            System.out.println("Err ao conectar no DB"+e.getMessage());
             return null;
         }
     }
